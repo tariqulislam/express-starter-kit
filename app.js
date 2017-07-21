@@ -5,6 +5,9 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var jwt = require('jsonwebtoken');
+var database = require('./config/database');
+var morgan = require('morgan');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -25,6 +28,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(morgan('dev'))
+
 app.use('/', index);
 app.use('/users', users);
 app.use('/products', products);
@@ -36,7 +41,9 @@ app.use(function(req, res, next) {
   next(err);
 });
 
-var dbConnect = mongoose.createConnection('mongodb://localhost/product', {
+
+
+var dbConnect = mongoose.createConnection(database.dbConnection, {
   useMongoClient: true,
   /* other options */
 });
