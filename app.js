@@ -43,18 +43,18 @@ app.use(function(req, res, next) {
 
 
 
-var dbConnect = mongoose.createConnection(database.dbConnection, {
-  useMongoClient: true,
-  /* other options */
-});
+// var dbConnect = mongoose.createConnection(database.dbConnection, {
+//   useMongoClient: true,
+//   /* other options */
+// });
+//
+// dbConnect.then( function(db){
+//   console.log("Connection is Okay for database", db);
+// });
 
-dbConnect.then( function(db){
-  console.log("Connection is Okay for database", db);
-});
-
-// mongoose.connect('mongodb://localhost/product')
-// .then(()=> console.log('connection successfull'))
-// .catch((err)=> console.console.error(err));
+mongoose.connect(database.dbConnection)
+.then(()=> console.log('connection successfull'))
+.catch((err)=> console.console.error(err));
 
 // error handler
 app.use(function(err, req, res, next) {
