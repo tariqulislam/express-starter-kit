@@ -12,6 +12,7 @@ var morgan = require('morgan');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var products = require('./routes/products');
+var protects = require('./middleware/protects')
 
 var app = express();
 
@@ -31,8 +32,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(morgan('dev'))
 
 app.use('/', index);
+
+
 app.use('/users', users);
-app.use('/products', products);
+app.use('/api', protects);
+app.use('/api/products', products);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
