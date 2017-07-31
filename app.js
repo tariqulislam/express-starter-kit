@@ -12,7 +12,8 @@ var morgan = require('morgan');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var products = require('./routes/products');
-var protects = require('./middleware/protects')
+var protects = require('./middleware/protects');
+var books = require('./routes/books');
 
 var app = express();
 
@@ -33,7 +34,7 @@ app.use(morgan('dev'))
 
 app.use('/', index);
 
-
+app.use('/books', books);
 app.use('/users', users);
 app.use('/api', protects);
 app.use('/api/products', products);
