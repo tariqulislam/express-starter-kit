@@ -8,12 +8,14 @@ var mongoose = require('mongoose');
 var jwt = require('jsonwebtoken');
 var database = require('./config/database');
 var morgan = require('morgan');
+var multer = require('multer');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
 var products = require('./routes/products');
 var protects = require('./middleware/protects');
 var books = require('./routes/books');
+var fileuploads = require('./routes/fileuploads');
 
 var app = express();
 
@@ -36,8 +38,10 @@ app.use('/', index);
 
 app.use('/books', books);
 app.use('/users', users);
+app.use('/fileuploads', fileuploads);
 app.use('/api', protects);
 app.use('/api/products', products);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -45,6 +49,9 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
+
+/* configure the storage in multer */
+
 
 
 
@@ -57,7 +64,7 @@ app.use(function(req, res, next) {
 //   console.log("Connection is Okay for database", db);
 // });
 
-mongoose.connect(database.dbConnection)
+mongoose.connect(database.dbConnection, { useMongoClient: true })
 .then(()=> console.log('connection successfull'))
 .catch((err)=> console.console.error(err));
 
