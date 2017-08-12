@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "nodemon": "nodemon --watch routes --watch models --watch middleware --watch config --watch bin ./bin/www",
     "start": "node ./bin/www"
   },
   "dependencies": {
@@ -15,5 +16,8 @@
     "morgan": "~1.8.1",
     "pug": "~2.0.0-beta11",
     "serve-favicon": "~2.4.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
   }
 }
