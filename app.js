@@ -12,7 +12,8 @@ var morgan = require('morgan');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var products = require('./routes/products');
-var protects = require('./middleware/protects')
+var protects = require('./middleware/protects');
+var vehicletypes = require('./routes/vehicle/vehicletypes');
 
 var app = express();
 
@@ -37,6 +38,7 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/api', protects);
 app.use('/api/products', products);
+app.use('/vehicletypes', vehicletypes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
