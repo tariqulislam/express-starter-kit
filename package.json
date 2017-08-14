@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "nodemon": "nodemon --watch routes --watch models --watch middleware --watch config --watch bin ./bin/www",
+    "nodemon": "nodemon --watch app.js --watch routes --watch models --watch middleware --watch config --watch bin ./bin/www",
     "start": "node ./bin/www"
   },
   "dependencies": {
