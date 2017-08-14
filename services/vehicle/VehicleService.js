@@ -7,8 +7,22 @@ module.exports.findVehicleType = (cb) => {
        console.log("service error", err);
         cb(err);
      } else {
-       console.log("service error", vehicletypes)
+       console.log("service success", vehicletypes)
         cb(vehicletypes);
      }
+  });
+};
+
+module.exports.saveVehicleType = (vtype,cb) => {
+
+  console.log("this is value type",vtype);
+  VehicleType.create(vtype, (err,vehicletype) => {
+    if(err){
+      console.log("Service Error", err);
+      cb(err);
+    } else {
+      console.log("service success", vehicletype);
+      cb(vehicletype);
+    }
   });
 }

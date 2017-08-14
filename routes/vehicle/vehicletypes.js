@@ -10,11 +10,10 @@ router.get('/', (req,res,next) => {
     });
 });
 
-//router.post('/', (req,res,next) => {
-//  VehicleType.create(req.body, (err, vehicletype) => {
-  //  if(err) return next(err);
-  //  res.json(vehicletype);
-//  });
-//});
+router.post('/', (req,res,next) => {
+   VehicleService.saveVehicleType(req.body, (results) => {
+       res.json(results);
+   });
+});
 
 module.exports = router;
