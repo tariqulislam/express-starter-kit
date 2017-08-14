@@ -14,6 +14,9 @@ var products = require('./routes/products');
 var protects = require('./middleware/protects');
 var books = require('./routes/books');
 
+var vehicletypes = require('./routes/vehicle/vehicletypes');
+
+
 var app = express();
 var swaggerJsDoc = require('swagger-jsdoc');
 var swaggerDefinition = {
@@ -61,6 +64,7 @@ app.use('/', index);
  app.use('/users', users);
  app.use('/api', protects);
  app.use('/api/products', products);
+app.use('/vehicletypes', vehicletypes);
 
 
 //catch 404 and forward to error handler
