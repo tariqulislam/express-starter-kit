@@ -94,6 +94,8 @@ app.use(function(req, res, next) {
 //   console.log("Connection is Okay for database", db);
 // });
 
+console.log("this is db connection", database.dbConnection);
+
 mongoose.connect(database.dbConnection, { useMongoClient: true })
 .then(()=> console.log('connection successfull'))
 .catch((err)=> console.console.error(err));
