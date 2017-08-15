@@ -22,6 +22,7 @@ Installation process is easy, you can only download or clone application from gi
 8. Nodemon
 9. ES6 and ES5
 10. Express Router
+11. Dotenv
 
 
 ## Usage and instructions
