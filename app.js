@@ -26,7 +26,7 @@ var app = express();
 var swaggerJsDoc = require('swagger-jsdoc');
 var swaggerDefinition = {
   info: {
-    title: "Node Swagger API",
+    title: 'Node Swagger API',
     version: '1.0.0',
     decription: "this is api test"
   },
