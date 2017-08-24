@@ -1,5 +1,20 @@
 let mongoose = require('mongoose');
 
+/**
+* @swagger
+* definition:
+*   Book:
+*     properties:
+*       title:
+*          type: string
+*       author:
+*          type: string
+*       year:
+*          type: integer
+*       pages:
+*          type: integer
+*/
+
 let BookSchema = new mongoose.Schema({
    title:{type:String, required: true},
    author: { type: String, required: true},

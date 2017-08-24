@@ -3,20 +3,7 @@ let router = express.Router();
 let mongoose = require('mongoose');
 let Book = require('../models/Book.js');
 
-/**
-* @swagger
-* definition:
-*   Book:
-*     properties:
-*       title:
-*          type: string
-*       author:
-*          type: string
-*       year:
-*          type: integer
-*       pages:
-*          type: integer
-*/
+
 
 
 router.get('/', (req,res,next)=> {
@@ -61,7 +48,7 @@ router.get('/:id', (req,res,next) => {
  *   post:
  *     tags:
  *       - Books
- *     description: Creates a new puppy
+ *     description: Creates a new book
  *     produces:
  *       - application/json
  *     parameters:
