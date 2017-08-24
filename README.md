@@ -27,7 +27,9 @@ Installation process is easy, you can only download or clone application from gi
 
 
 ## Usage and instructions
-First configure the database from .env file to use mongoose(driver for mongodb for node) for this project. 
+First configure the database from .env file to use mongoose(driver for mongodb for node) for this project.
+
+![alt text](https://github.com/tariqulislam/express-starter-kit/blob/feature/user-guide/public/images/env.png)
 
 ## Credits
 
