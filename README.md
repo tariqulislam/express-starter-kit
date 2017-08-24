@@ -27,7 +27,7 @@ Installation process is easy, you can only download or clone application from gi
 
 
 ## Usage and instructions
-
+First configure the database from .env file to use mongoose(driver for mongodb for node) for this project. 
 
 ## Credits
 
