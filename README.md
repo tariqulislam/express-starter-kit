@@ -27,9 +27,18 @@ Installation process is easy, you can only download or clone application from gi
 
 
 ## Usage and instructions
-First configure the database from .env file to use mongoose(driver for mongodb for node) for this project.
+I have use Dotenv for setup the environment variable for primary configuration of different plugins of the project,
+
+1. For database configuration, I have provide the info at .env file to use mongoose(driver for mongodb for node) for this project.
 
 ![alt text](https://github.com/tariqulislam/express-starter-kit/blob/feature/user-guide/public/images/env.png)
+
+Figure 1.1: database configuration
+    DB_NAME= <mongodb database name>
+    DB_HOST = <mongodb hosting server>(e.g: localhost or server location)
+    DB_PORT = <mongodb database port>
+    DB_USER = <mongodb username>
+    DB_PASS = <mongodb user password>
 
 ## Credits
 
