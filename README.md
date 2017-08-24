@@ -43,7 +43,7 @@ Figure 1.1: database configuration <br />
 2. Hot reload the development environment with Nodemon plugins <br />
     No need to restart node project every time when it is at development stage <br />
     The project has Nodemon server to auto lookup the changes at working directory of project <br />
-![alt text](https://github.com/tariqulislam/express-starter-kit/blob/feature/user-guide/public/images/nodemoon.PNG)
+![alt text](https://github.com/tariqulislam/express-starter-kit/blob/feature/user-guide/public/images/nodemoon.png)
 
 ## Credits
 
