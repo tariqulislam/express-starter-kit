@@ -33,12 +33,12 @@ I have use Dotenv for setup the environment variable for primary configuration o
 
 ![alt text](https://github.com/tariqulislam/express-starter-kit/blob/feature/user-guide/public/images/env.png)
 
-Figure 1.1: database configuration_
-    DB_NAME= <mongodb database name>_
-    DB_HOST = <mongodb hosting server>(e.g: localhost or server location)_
-    DB_PORT = <mongodb database port>_
-    DB_USER = <mongodb username>_
-    DB_PASS = <mongodb user password>_
+Figure 1.1: database configuration <br />
+    DB_NAME= (mongodb database name)_
+    DB_HOST = (mongodb hosting server, e.g: localhost or server location)_
+    DB_PORT = (mongodb database port)_
+    DB_USER = (mongodb username)_
+    DB_PASS = (mongodb user password)_
 
 ## Credits
 
