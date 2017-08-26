@@ -56,8 +56,38 @@ DB_PASS = rony123
 
 ![alt text](https://github.com/tariqulislam/express-starter-kit/blob/feature/user-guide/public/images/nodemoon.png)
 
-3. Adding YML in the project:
-
+3. Adding model structure specification in models folder:
+```
+/**
+* @swagger
+* definition:
+*   (entity/DB Table name):
+*     properties:
+*       (Column Name/attibute name):
+*           type: (Swagger data type)
+*/
+```
+  For product model (e,g) Models/Product.js
+  ```
+  /**
+  * @swagger
+  * definition:
+  *   Product:
+  *     properties:
+  *       prod_name:
+  *           type: string
+  *       prod_desc:
+  *           type: string
+  *       prod_price:
+  *           type: number
+  */
+  var ProductSchema = new mongoose.Schema({
+    prod_name: String,
+    prod_desc: String,
+    prod_price:Number,
+    update_at:{ type: Date, default:Date.now},
+  });
+  ```
 
 ## Credits
 
