@@ -12,7 +12,6 @@ let mongoose = require('mongoose');
 *       is_active:
 *          type: boolean
 */
-
 let VehicleTypeSchema = new mongoose.Schema({
   model_name: { type:String, require: true, unique: true},
   model_desc:String,

@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
-var mongoose = require('mongoose');
-var Product = require('../models/Product.js');
+//var mongoose = require('mongoose');
+//var Product = require('../models/Product.js');
+let Product = require('../services/product/ProductService');
 
 
 router.get('/', function(req,res,next){
@@ -21,12 +22,37 @@ router.get('/:id', function(req,res,next){
 });
 
 
-router.post('/', function(req,res,next){
-  Product.create(req.body,function(err,post){
-    if(err) return next(err);
-    res.json(post);
+/**
+ * @swagger
+ * /products:
+ *   post:
+ *     tags:
+ *       - Products
+ *     description: Creates a new Product
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: product
+ *         description: Product object
+ *         in: body
+ *         required: true
+ *         schema:
+ *           $ref: '#/definitions/Product'
+ *     responses:
+ *       200:
+ *         description: Successfully created
+ */
+router.post('/', (req,res,next) =>{
+  Product.saveProduct(req.body, (results) =>{
+    res.json(results);
   });
 });
+// router.post('/', function(req,res,next){
+//   Product.create(req.body,function(err,post){
+//     if(err) return next(err);
+//     res.json(post);
+//   });
+// });
 
 router.put('/:id', function(req,res,next){
   Product.findByIdAndUpdate(req.params.id,req.body,function(err,post){

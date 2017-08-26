@@ -68,8 +68,8 @@ app.use('/', index);
 
  app.use('/books', books);
  app.use('/users', users);
- app.use('/api', protects);
- app.use('/api/products', products);
+ //app.use('/api', protects);
+ app.use('/products', products);
 app.use('/vehicletypes', vehicletypes);
 app.use('/fileuploads', fileuploads);
 
