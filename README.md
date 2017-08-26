@@ -27,18 +27,37 @@ Installation process is easy, you can only download or clone application from gi
 
 
 ## Usage and instructions
-I have use Dotenv for setup the environment variable for primary configuration of different plugins of the project,
+I have use Dotenv for setup the environment variable for primary configuration of different plugins of the project:
 
 1. For database configuration, I have provide the info at .env file to use mongoose(driver for mongodb for node) for this project.
 
-![alt text](https://github.com/tariqulislam/express-starter-kit/blob/feature/user-guide/public/images/env.png)
+```javascript
+DB_NAME = ryder
+DB_HOST = localhost
+DB_PORT = 27017
+DB_USER = rony
+DB_PASS = rony123
+```
+**Database configuration:**
 
-Figure 1.1: database configuration <br />
-    DB_NAME= (mongodb database name) <br />
-    DB_HOST = (mongodb hosting server, e.g: localhost or server location) <br />
-    DB_PORT = (mongodb database port) <br />
-    DB_USER = (mongodb username) <br />
-    DB_PASS = (mongodb user password) <br />
+      DB_NAME = (mongodb database name)
+      DB_HOST = (mongodb hosting server, e.g: localhost or server location)
+      DB_PORT = (mongodb database port)
+      DB_USER = (mongodb username)
+      DB_PASS = (mongodb user password)
+
+
+2. Hot reload the development environment with Nodemon plugins.
+
+
+    No need to restart node project every time when it is at development stage.
+
+    The project has Nodemon server to auto lookup the changes at working directory of project.
+
+![alt text](https://github.com/tariqulislam/express-starter-kit/blob/feature/user-guide/public/images/nodemoon.png)
+
+3. Adding YML in the project:
+
 
 ## Credits
 
