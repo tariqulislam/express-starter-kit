@@ -28,7 +28,7 @@ var swaggerDefinition = {
   info: {
     title: 'Node Swagger API',
     version: '1.0.0',
-    decription: "this is api test"
+    decription: 'this is api test'
   },
   host: 'localhost:3000',
   basePath: '/',
