@@ -82,6 +82,28 @@ app.use(function(req, res, next) {
 
 /* configure the storage in multer */
 
+/** check email send to gmail **/
+var MailConfig = require('./config/mail');
+
+var transport = MailConfig.GmailTransport;
+console.log("this is transport", transport);
+
+let HelperOptions = {
+  from: '"Tariqul islam" <tariqul@apptacore.io>',
+  to: 'tariqul@itconquest.com',
+  subject: 'Hellow world!',
+  text:"working for me"
+};
+
+transport.sendMail(HelperOptions, (error,info) => {
+  if(error) {
+    console.log(error);
+  }
+  console.log("email is send");
+  console.log(info);
+});
+
+
 
 
 
