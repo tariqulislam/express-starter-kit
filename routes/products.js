@@ -6,13 +6,14 @@ var Product = require('../models/Product.js');
 
 router.get('/', function(req,res,next){
   Product.find(function(err,products){
+    console.log("products");
      if(err) return next(err);
      res.json(products);
   });
 });
 
 
-router.get(':/id', function(req,res,next){
+router.get('/:id', function(req,res,next){
   Product.findById(req.params.id, function(err,post){
     if(err) return next(err);
     res.json(post);
