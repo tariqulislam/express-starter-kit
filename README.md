@@ -33,6 +33,13 @@ I have use Dotenv for setup the environment variable for primary configuration o
 
 ![alt text](https://github.com/tariqulislam/express-starter-kit/blob/feature/user-guide/public/images/env.png)
 
+```javascript
+DB_NAME= ryder
+DB_HOST = localhost
+DB_PORT = 27017
+DB_USER = rony
+DB_PASS = rony123 ```
+
 Figure 1.1: database configuration <br />
     DB_NAME= (mongodb database name) <br />
     DB_HOST = (mongodb hosting server, e.g: localhost or server location) <br />
