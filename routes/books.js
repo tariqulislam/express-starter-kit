@@ -5,7 +5,22 @@ let Book = require('../models/Book.js');
 
 
 
-
+/**
+* @swagger
+* /books:
+*   get:
+*     tags:
+*       - Books
+*     description: Return a single book
+*     produces:
+*       - application/json
+*     responses:
+*       200:
+*         description: A book list
+*         schema:
+*           $ref: '#/definitions/Book'
+*
+*/
 router.get('/', (req,res,next)=> {
   Book.find((err,books) => {
      if(err) return next(err);
@@ -61,6 +76,10 @@ router.get('/:id', (req,res,next) => {
  *     responses:
  *       200:
  *         description: Successfully created
+ *       400:
+ *         description: Unauthorized access to api
+ *       404:
+ *         description: Not found or record not found
  */
 router.post('/', (req,res, next) => {
   //  Book.create(req.body, (err,book) => {
@@ -78,7 +97,35 @@ router.post('/', (req,res, next) => {
    });
 });
 
-
+/**
+* @swagger
+*   /books/{id}:
+*     put:
+*        tags:
+*         - Books
+*        description: Update the book information
+*        produces:
+*         - application/json
+*        parameters:
+*         - name: id
+*           description: "using for update the book information"
+*           in: path
+*           required: true
+*           type: string
+*         - name: book
+*           description : "book information "
+*           in: body
+*           required : true
+*           schema:
+*             $ref: '#/definitions/Book'
+*        responses:
+*           200:
+*               description: book update successfully
+*           400:
+*               description: Unauthorized access to api
+*           404:
+*               description: Not found or record not found
+*/
 router.put('/:id', (req,res,next) => {
   Book.findByIdAndUpdate(req.params.id, req.body, (err,book) => {
     if(err) return next(err);
@@ -86,6 +133,35 @@ router.put('/:id', (req,res,next) => {
   });
 });
 
+/**
+* @swagger
+*   /books/{id}:
+*     delete:
+*        tags:
+*         - Books
+*        description: Deleted the book information
+*        produces:
+*         - application/json
+*        parameters:
+*         - name: id
+*           description: "using for delete the book information"
+*           in: path
+*           required: true
+*           type: string
+*         - name: book
+*           description : "book information "
+*           in: body
+*           required : true
+*           schema:
+*             $ref: '#/definitions/Book'
+*        responses:
+*           200:
+*               description: book delete successfully
+*           400:
+*               description: Unauthorized access to api
+*           404:
+*               description: Not found or record not found
+*/
 router.delete('/:id',(req,res, next) => {
   Book.findByIdAndRemove(req.params.id, req.body, (err, book) => {
     if(err) return next(err);
