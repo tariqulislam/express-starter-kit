@@ -56,6 +56,9 @@ DB_PASS = rony123
 
 ![alt text](https://github.com/tariqulislam/express-starter-kit/blob/feature/user-guide/public/images/nodemoon.png)
 
+3. Adding YML in the project:
+
+
 ## Credits
 
 
