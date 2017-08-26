@@ -39,11 +39,17 @@ DB_USER = rony
 DB_PASS = rony123
 ```
 **Database configuration:**
-  *DB_NAME= (mongodb database name)
-  *DB_HOST = (mongodb hosting server, e.g: localhost or server location)
-  *DB_PORT = (mongodb database port)
-  *DB_USER = (mongodb username)
-  *DB_PASS = (mongodb user password)
+
+  DB_NAME= (mongodb database name)
+
+  DB_HOST = (mongodb hosting server, e.g: localhost or server location)
+
+  DB_PORT = (mongodb database port)
+
+  DB_USER = (mongodb username)
+
+  DB_PASS = (mongodb user password)
+
 
 2. Hot reload the development environment with Nodemon plugins.
 
