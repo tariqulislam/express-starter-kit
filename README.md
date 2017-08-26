@@ -38,7 +38,8 @@ DB_NAME= ryder
 DB_HOST = localhost
 DB_PORT = 27017
 DB_USER = rony
-DB_PASS = rony123 ```
+DB_PASS = rony123
+```
 
 Figure 1.1: database configuration <br />
     DB_NAME= (mongodb database name) <br />
