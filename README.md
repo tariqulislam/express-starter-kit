@@ -57,7 +57,7 @@ DB_PASS = rony123
 ![alt text](https://github.com/tariqulislam/express-starter-kit/blob/feature/user-guide/public/images/nodemoon.png)
 
 3. Adding model structure specification in models folder:
-```
+```swagger
 /**
 * @swagger
 * definition:
@@ -68,7 +68,7 @@ DB_PASS = rony123
 */
 ```
   For product model (e,g) Models/Product.js
-  ```
+  ```javascript
   /**
   * @swagger
   * definition:
@@ -88,6 +88,16 @@ DB_PASS = rony123
     update_at:{ type: Date, default:Date.now},
   });
   ```
+
+
+```javascript
+let express = require('express');
+let router = express.Router();
+let mongoose = require('mongoose');
+let Product = require('../models/(product model name).js');
+```
+
+![alt text](https://github.com/tariqulislam/express-starter-kit/blob/feature/user-guide/public/images/swagger.png)
 
 ## Credits
 
