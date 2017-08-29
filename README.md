@@ -89,7 +89,10 @@ DB_PASS = rony123
   });
   ```
 
+3. Adding routes structure specification in routes folder:
 
+  For product routes (e,g) routes/products.js
+    Require of these information:
 ```javascript
 let express = require('express');
 let router = express.Router();
@@ -97,7 +100,36 @@ let mongoose = require('mongoose');
 let Product = require('../models/(product model name).js');
 ```
 
-![alt text](https://github.com/tariqulislam/express-starter-kit/blob/develop/public/images/swagger.png)
+For product routes (e,g) routes/products.js
+```javascript
+/**
+ * @swagger
+ * /products:
+ *   post:
+ *     tags:
+ *       - Products
+ *     description: Creates a new Product
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: product
+ *         description: Product object
+ *         in: body
+ *         required: true
+ *         schema:
+ *           $ref: '#/definitions/Product'
+ *     responses:
+ *       200:
+ *         description: Successfully created
+ */
+router.post('/', (req,res,next) =>{
+  Product.saveProduct(req.body, (results) =>{
+    res.json(results);
+  });
+});
+```
+  Swagger UI activity
+  ![alt text](https://github.com/tariqulislam/express-starter-kit/blob/develop/public/images/swagger.png)
 
 ## Credits
 
