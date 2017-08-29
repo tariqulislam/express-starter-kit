@@ -97,7 +97,7 @@ let mongoose = require('mongoose');
 let Product = require('../models/(product model name).js');
 ```
 
-![alt text](https://github.com/tariqulislam/express-starter-kit/blob/feature/user-guide/public/images/swagger.png)
+![alt text](https://github.com/tariqulislam/express-starter-kit/blob/develop/public/images/swagger.png)
 
 ## Credits
 
