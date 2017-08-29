@@ -88,7 +88,7 @@ DB_PASS = rony123
     update_at:{ type: Date, default:Date.now},
   });
   ```
-
+  
 3. Adding routes structure specification in routes folder:
 
   For product routes (e,g) routes/products.js
