@@ -20,6 +20,7 @@ var books = require('./routes/books');
 var fileuploads = require('./routes/fileuploads');
 
 var vehicletypes = require('./routes/vehicle/vehicletypes');
+var emails = require('./routes/emails');
 
 
 var app = express();
@@ -74,6 +75,8 @@ app.use('/vehicletypes', vehicletypes);
 app.use('/fileuploads', fileuploads);
 
 
+app.use('/emails', emails);
+
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
@@ -81,6 +84,9 @@ app.use(function(req, res, next) {
 });
 
 /* configure the storage in multer */
+
+/** check email send to gmail **/
+
 
 
 
