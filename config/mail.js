@@ -27,6 +27,15 @@ module.exports.MailGunTransport = nodemailer.createTransport({
   }
 });
 
+module.exports.ViewOptions = (transport, hbs) => {
+
+  transport.use('compile', hbs({
+    viewPath: 'views/email',
+    extName: '.hbs'
+  }));
+
+}
+
 module.exports.HelperOptions = (from,to,subject,html,text) => {
    return {
      from: from,

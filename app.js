@@ -20,6 +20,7 @@ var books = require('./routes/books');
 var fileuploads = require('./routes/fileuploads');
 
 var vehicletypes = require('./routes/vehicle/vehicletypes');
+var emails = require('./routes/emails');
 
 
 var app = express();
@@ -74,6 +75,8 @@ app.use('/vehicletypes', vehicletypes);
 app.use('/fileuploads', fileuploads);
 
 
+app.use('/emails', emails);
+
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
@@ -83,25 +86,6 @@ app.use(function(req, res, next) {
 /* configure the storage in multer */
 
 /** check email send to gmail **/
-var MailConfig = require('./config/mail');
-
-var transport = MailConfig.GmailTransport;
-console.log("this is transport", transport);
-
-let HelperOptions = {
-  from: '"Tariqul islam" <tariqul@apptacore.io>',
-  to: 'tariqul@itconquest.com',
-  subject: 'Hellow world!',
-  text:"working for me"
-};
-
-transport.sendMail(HelperOptions, (error,info) => {
-  if(error) {
-    console.log(error);
-  }
-  console.log("email is send");
-  console.log(info);
-});
 
 
 
