@@ -18,6 +18,8 @@ var products = require('./routes/products');
 var protects = require('./middleware/protects');
 var books = require('./routes/books');
 var fileuploads = require('./routes/fileuploads');
+var items = require('./routes/items');
+var drivers = require('./routes/drivers');
 
 var vehicletypes = require('./routes/vehicle/vehicletypes');
 
@@ -68,10 +70,12 @@ app.use('/', index);
 
  app.use('/books', books);
  app.use('/users', users);
- app.use('/api', protects);
- app.use('/api/products', products);
+ //app.use('/api', protects);
+ app.use('/products', products);
 app.use('/vehicletypes', vehicletypes);
 app.use('/fileuploads', fileuploads);
+app.use('/items', items);
+app.use('/drivers', drivers);
 
 
 app.use(function(req, res, next) {

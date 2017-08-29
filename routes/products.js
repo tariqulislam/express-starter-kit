@@ -20,7 +20,26 @@ router.get('/:id', function(req,res,next){
   });
 });
 
-
+/**
+ * @swagger
+ * /products:
+ *   post:
+ *     tags:
+ *       - Products
+ *     description: Creates a new product
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: product
+ *         description: product object
+ *         in: body
+ *         required: true
+ *         schema:
+ *           $ref: '#/definitions/Product'
+ *     responses:
+ *       200:
+ *         description: Successfully created
+ */
 router.post('/', function(req,res,next){
   Product.create(req.body,function(err,post){
     if(err) return next(err);
