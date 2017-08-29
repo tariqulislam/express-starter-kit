@@ -1,0 +1,16 @@
+{
+  "env": {
+    "browser": false,
+    "node": true
+  },
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module",
+    "allowImportExportEverywhere": false,
+    "codeFrame": false
+  },
+  "rules": {
+    "strict": 1,
+    "quotes": [2, "single"]
+  }
+}
