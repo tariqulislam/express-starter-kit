@@ -88,7 +88,7 @@ DB_PASS = rony123
     update_at:{ type: Date, default:Date.now},
   });
   ```
-  
+
 3. Adding routes structure specification in routes folder:
 
   For product routes (e,g) routes/products.js
@@ -130,6 +130,13 @@ router.post('/', (req,res,next) =>{
 ```
   Swagger UI activity
   ![alt text](https://github.com/tariqulislam/express-starter-kit/blob/develop/public/images/swagger.png)
+
+  We are using Es Lint for monitoring and standarized the coding format
+```javascript
+npm run lint
+```
+
+
 
 ## Credits
 
