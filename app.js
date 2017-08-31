@@ -25,23 +25,10 @@ var emails = require('./routes/emails');
 
 var app = express();
 var swaggerJsDoc = require('swagger-jsdoc');
-var swaggerDefinition = {
-  info: {
-    title: 'Node Swagger API',
-    version: '1.0.0',
-    decription: 'this is api test'
-  },
-  host: 'localhost:3000',
-  basePath: '/',
-};
+var swaggerconf = require('./config/swaggerconf');
 
-var options = {
-  swaggerDefinition: swaggerDefinition,
-  apis:['./routes/*.js', './models/*.js', './routes/**/*.js'],
-};
 
-var swaggerSpec = swaggerJsDoc(options);
-
+var swaggerSpec = swaggerJsDoc(swaggerconf.swaggerOptions);
 // serve swagger
 app.get('/swagger.json', function(req, res) {
   res.setHeader('Content-Type', 'application/json');
