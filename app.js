@@ -20,8 +20,9 @@ var books = require('./routes/books');
 var fileuploads = require('./routes/fileuploads');
 var items = require('./routes/items');
 var drivers = require('./routes/drivers');
-
+var resets = require('./routes/resets');
 var vehicletypes = require('./routes/vehicle/vehicletypes');
+var emails = require('./routes/emails');
 
 
 var app = express();
@@ -30,7 +31,7 @@ var swaggerDefinition = {
   info: {
     title: 'Node Swagger API',
     version: '1.0.0',
-    decription: "this is api test"
+    decription: 'this is api test'
   },
   host: 'localhost:3000',
   basePath: '/',
@@ -68,15 +69,16 @@ app.use(require('morgan')('short'));
 app.use('/', index);
 
 
- app.use('/books', books);
- app.use('/users', users);
- //app.use('/api', protects);
- app.use('/products', products);
+app.use('/books', books);
+app.use('/users', users);
+app.use('/api', protects);
+app.use('/products', products);
 app.use('/vehicletypes', vehicletypes);
 app.use('/fileuploads', fileuploads);
 app.use('/items', items);
 app.use('/drivers', drivers);
-
+app.use('/emails', emails);
+app.use('/resets', resets);
 
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
@@ -85,6 +87,9 @@ app.use(function(req, res, next) {
 });
 
 /* configure the storage in multer */
+
+/** check email send to gmail **/
+
 
 
 

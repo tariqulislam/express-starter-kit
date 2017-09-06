@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "nodemon": "nodemon --watch app.js --watch routes --watch models --watch middleware --watch config --watch bin ./bin/www",
+    "nodemon": "nodemon --watch .env --watch app.js --watch routes --watch models --watch middleware --watch config --watch bin ./bin/www",
     "start": "node ./bin/www",
     "test": "mocha --timeout 10000",
     "lint": "eslint app.js routes/**/*.js models/*.js routes/*.js"
@@ -18,6 +18,8 @@
     "mongoose": "^4.11.3",
     "morgan": "~1.8.1",
     "multer": "^1.3.0",
+    "nodemailer": "^4.0.1",
+    "nodemailer-express-handlebars": "^2.0.0",
     "pug": "~2.0.0-beta11",
     "serve-favicon": "~2.4.2"
   },

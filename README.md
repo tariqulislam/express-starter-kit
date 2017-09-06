@@ -27,18 +27,109 @@ Installation process is easy, you can only download or clone application from gi
 
 
 ## Usage and instructions
-I have use Dotenv for setup the environment variable for primary configuration of different plugins of the project,
+I have use Dotenv for setup the environment variable for primary configuration of different plugins of the project:
 
 1. For database configuration, I have provide the info at .env file to use mongoose(driver for mongodb for node) for this project.
 
-![alt text](https://github.com/tariqulislam/express-starter-kit/blob/feature/user-guide/public/images/env.png)
+```javascript
+DB_NAME = ryder
+DB_HOST = localhost
+DB_PORT = 27017
+DB_USER = rony
+DB_PASS = rony123
+```
+**Database configuration:**
 
-Figure 1.1: database configuration <br />
-    DB_NAME= (mongodb database name) <br />
-    DB_HOST = (mongodb hosting server, e.g: localhost or server location) <br />
-    DB_PORT = (mongodb database port) <br />
-    DB_USER = (mongodb username) <br />
-    DB_PASS = (mongodb user password) <br />
+      DB_NAME = (mongodb database name)
+      DB_HOST = (mongodb hosting server, e.g: localhost or server location)
+      DB_PORT = (mongodb database port)
+      DB_USER = (mongodb username)
+      DB_PASS = (mongodb user password)
+
+
+2. Hot reload the development environment with Nodemon plugins.
+
+
+    No need to restart node project every time when it is at development stage.
+
+    The project has Nodemon server to auto lookup the changes at working directory of project.
+
+![alt text](https://github.com/tariqulislam/express-starter-kit/blob/feature/user-guide/public/images/nodemoon.png)
+
+3. Adding model structure specification in models folder:
+```swagger
+/**
+* @swagger
+* definition:
+*   (entity/DB Table name):
+*     properties:
+*       (Column Name/attibute name):
+*           type: (Swagger data type)
+*/
+```
+  For product model (e,g) Models/Product.js
+  ```javascript
+  /**
+  * @swagger
+  * definition:
+  *   Product:
+  *     properties:
+  *       prod_name:
+  *           type: string
+  *       prod_desc:
+  *           type: string
+  *       prod_price:
+  *           type: number
+  */
+  var ProductSchema = new mongoose.Schema({
+    prod_name: String,
+    prod_desc: String,
+    prod_price:Number,
+    update_at:{ type: Date, default:Date.now},
+  });
+  ```
+  
+3. Adding routes structure specification in routes folder:
+
+  For product routes (e,g) routes/products.js
+    Require of these information:
+```javascript
+let express = require('express');
+let router = express.Router();
+let mongoose = require('mongoose');
+let Product = require('../models/(product model name).js');
+```
+
+For product routes (e,g) routes/products.js
+```javascript
+/**
+ * @swagger
+ * /products:
+ *   post:
+ *     tags:
+ *       - Products
+ *     description: Creates a new Product
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: product
+ *         description: Product object
+ *         in: body
+ *         required: true
+ *         schema:
+ *           $ref: '#/definitions/Product'
+ *     responses:
+ *       200:
+ *         description: Successfully created
+ */
+router.post('/', (req,res,next) =>{
+  Product.saveProduct(req.body, (results) =>{
+    res.json(results);
+  });
+});
+```
+  Swagger UI activity
+  ![alt text](https://github.com/tariqulislam/express-starter-kit/blob/develop/public/images/swagger.png)
 
 ## Credits
 

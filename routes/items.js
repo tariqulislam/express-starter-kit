@@ -4,8 +4,6 @@ let mongoose = require('mongoose');
 let Item = require('../models/Item.js');
 
 
-
-
 router.get('/', (req,res,next)=> {
   Item.find((err,items) => {
      if(err) return next(err);
