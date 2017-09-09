@@ -6,12 +6,13 @@ var mongoose = require('mongoose');
 *   Product:
 *     properties:
 *       prod_name:
-*           type: string
+*          type: string
 *       prod_desc:
-*           type: string
+*          type: string
 *       prod_price:
 *           type: number
 */
+
 var ProductSchema = new mongoose.Schema({
   prod_name: String,
   prod_desc: String,

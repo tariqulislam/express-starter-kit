@@ -2,7 +2,7 @@ let mongoose = require('mongoose');
 
 /**
 * @swagger
-* definition:
+* definitions:
 *   VehicleType:
 *     properties:
 *       model_name:
