@@ -14,6 +14,9 @@
     "debug": "~2.6.3",
     "dotenv": "^4.0.0",
     "express": "~4.15.2",
+    "helmet": "^3.8.1",
+    "helmet-csp": "^2.5.1",
+    "hide-powered-by": "^1.0.0",
     "jsonwebtoken": "^7.4.1",
     "mongoose": "^4.11.3",
     "morgan": "~1.8.1",
@@ -21,7 +24,8 @@
     "nodemailer": "^4.0.1",
     "nodemailer-express-handlebars": "^2.0.0",
     "pug": "~2.0.0-beta11",
-    "serve-favicon": "~2.4.2"
+    "serve-favicon": "~2.4.2",
+    "x-xss-protection": "^1.0.0"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
