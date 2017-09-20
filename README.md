@@ -169,6 +169,9 @@ npm run lint
 
   ```
 
+  Email Templating
+  
+
 
 
 ## Credits
