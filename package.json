@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "body-parser": "~1.17.1",
+    "busboy": "^0.2.14",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.3",
     "dotenv": "^4.0.0",
@@ -21,7 +22,8 @@
     "nodemailer": "^4.0.1",
     "nodemailer-express-handlebars": "^2.0.0",
     "pug": "~2.0.0-beta11",
-    "serve-favicon": "~2.4.2"
+    "serve-favicon": "~2.4.2",
+    "stream-meter": "^1.0.4"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",

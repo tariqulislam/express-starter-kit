@@ -23,9 +23,11 @@ var drivers = require('./routes/drivers');
 var resets = require('./routes/resets');
 var vehicletypes = require('./routes/vehicle/vehicletypes');
 var emails = require('./routes/emails');
+var uploads = require('./routes/uploads');
 
 
 var app = express();
+global.__base = __dirname + "/"
 var swaggerJsDoc = require('swagger-jsdoc');
 var swaggerconf = require('./config/swaggerconf');
 
@@ -53,6 +55,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(require('morgan')('short'));
 
 
+
 app.use('/', index);
 
 
@@ -66,6 +69,7 @@ app.use('/items', items);
 app.use('/drivers', drivers);
 app.use('/emails', emails);
 app.use('/resets', resets);
+app.use('/uploads', uploads);
 
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
