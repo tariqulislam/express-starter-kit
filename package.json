@@ -9,6 +9,7 @@
     "lint": "eslint app.js routes/**/*.js models/*.js routes/*.js"
   },
   "dependencies": {
+    "bcrypt": "^1.0.3",
     "body-parser": "~1.17.1",
     "busboy": "^0.2.14",
     "cookie-parser": "~1.4.3",
