@@ -5,6 +5,16 @@ var path = require('path');
 var fs = require('fs');
 var fileType = require('file-type');
 
+router.put('/create_dir', (req, res,next) => {
+    var location = path.join(__base,'uploads/', 'test/');
+    fs.mkdir(location,0777, (err) => {
+        if(err) next(err);
+
+        console.log("file created")
+        res.send({"message":"file create successfully"})
+    });
+});
+
 
 router.post('/multi', (req, res, next) =>{
     var busboy = new Busboy({ headers: req.headers });
