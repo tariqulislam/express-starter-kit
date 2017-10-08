@@ -7,9 +7,10 @@ Express Starter kit is express js framework and boilerplat, which contains the d
 Installation process is easy, you can only download or clone application from git
 
 1. clone from git `git clone https://github.com/tariqulislam/express-starter-kit.git`
-2. run the command `npm install`
-3. configure the database from `config/database.js` file
-4. Provide the Application security
+2. then go to express-starter-kit by `cd express-starter-kit`
+3. Install Yarn package `npm install -g yarn`
+4. run command `yarn`
+5. run the command `yarn nodemon`
 
 ## developer must have knowledge about
 
