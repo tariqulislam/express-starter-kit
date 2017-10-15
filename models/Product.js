@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 /**
 * @swagger
-* definition:
+* definitions:
 *   Product:
 *     properties:
 *       prod_name:

@@ -1,8 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var mongoose = require('mongoose');
-var Product = require('../models/Product.js');
-//let Product = require('../services/product/ProductService');
+let ProductService = require('../services/product/ProductService');
 
 
 router.get('/', function(req,res,next){
@@ -42,10 +40,9 @@ router.get('/:id', function(req,res,next){
  *         description: Successfully created
  */
 router.post('/', function(req,res,next){
-  Product.create(req.body,function(err,post){
-    if(err) return next(err);
-    res.json(products);
-  });
+  ProductService.saveProduct(req.body, (result) => {
+    return res.json(result);
+  })
 });
 
 module.exports = router;
