@@ -6,7 +6,14 @@
     "nodemon": "nodemon --watch .env --watch app.js --watch routes --watch models --watch middleware --watch config --watch bin ./bin/www",
     "start": "node ./bin/www",
     "test": "mocha --timeout 10000",
-    "lint": "eslint app.js routes/**/*.js models/*.js routes/*.js"
+    "lint": "eslint app.js routes/**/*.js models/*.js routes/*.js",
+    "pm2:install": "npm install pm2@latest -g",
+    "pm2:prod": "pm2 start ecosystem.config.js --env production",
+    "pm2:dev": "pm2 start ecosystem.config.js --env development",
+    "pm2:reload": "pm2 restart all",
+    "pm2:stop": "pm2 stop all",
+    "pm2:kill": "pm2 kill",
+    "pm2:monitor": "pm2 monit"
   },
   "dependencies": {
     "body-parser": "~1.17.1",
