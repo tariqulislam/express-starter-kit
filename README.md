@@ -24,6 +24,8 @@ Installation process is easy, you can only download or clone application from gi
 9. ES6 and ES5
 10. Express Router
 11. Dotenv
+12. Bcrypt
+13. busboy
 
 
 ## Usage and instructions
@@ -88,7 +90,7 @@ DB_PASS = rony123
     update_at:{ type: Date, default:Date.now},
   });
   ```
-  
+
 3. Adding routes structure specification in routes folder:
 
   For product routes (e,g) routes/products.js
@@ -130,6 +132,46 @@ router.post('/', (req,res,next) =>{
 ```
   Swagger UI activity
   ![alt text](https://github.com/tariqulislam/express-starter-kit/blob/develop/public/images/swagger.png)
+
+  We are using Es Lint for monitoring and standarized the coding format
+```javascript
+npm run lint
+```
+  You can use docker for build the microservice and containarized the starter kit. just need build command to create docker container,
+  and docker must be installed at host machine.
+
+  what is docker?
+
+  Docker is the world’s leading software container platform. Developers use Docker to eliminate “works on my machine” problems when collaborating on code with co-workers. Operators use Docker to run and manage apps side-by-side in isolated containers to get better compute density. Enterprises use Docker to build agile software delivery pipelines to ship new features faster, more securely and with confidence for both Linux, Windows Server, and Linux-on-mainframe apps.[ref](https://www.docker.com/what-docker)
+
+  what is container of docker?
+
+  Containers are a way to package software in a format that can run isolated on a shared operating system. Unlike VMs, containers do not bundle a full operating system - only libraries and settings required to make the software work are needed. This makes for efficient, lightweight, self-contained systems and guarantees that software will always run the same, regardless of where it’s deployed.[ref](https://www.docker.com/what-docker)
+
+  to create the docker image or container run this command
+  ```
+  docker build -t <appname> <path of you application>
+  e.g ( docker build -t express_stater_server . )
+  ```
+  If you want to use the mongodb and docker container together, no need to configure the docker or docker-composer
+
+  what is docker-compose?
+
+  Compose is a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration. You just provide command
+
+  ```
+    docker-compose up
+
+  ```
+
+  For backgorund process
+
+  ```
+    docker-compose up -d
+
+  ```
+
+
 
 ## Credits
 

@@ -18,30 +18,21 @@ var products = require('./routes/products');
 var protects = require('./middleware/protects');
 var books = require('./routes/books');
 var fileuploads = require('./routes/fileuploads');
-
+var items = require('./routes/items');
+var drivers = require('./routes/drivers');
+var resets = require('./routes/resets');
 var vehicletypes = require('./routes/vehicle/vehicletypes');
 var emails = require('./routes/emails');
+var uploads = require('./routes/uploads');
 
 
 var app = express();
+global.__base = __dirname + "/"
 var swaggerJsDoc = require('swagger-jsdoc');
-var swaggerDefinition = {
-  info: {
-    title: 'Node Swagger API',
-    version: '1.0.0',
-    decription: 'this is api test'
-  },
-  host: 'localhost:3000',
-  basePath: '/',
-};
+var swaggerconf = require('./config/swaggerconf');
 
-var options = {
-  swaggerDefinition: swaggerDefinition,
-  apis:['./routes/*.js', './models/*.js', './routes/**/*.js'],
-};
 
-var swaggerSpec = swaggerJsDoc(options);
-
+var swaggerSpec = swaggerJsDoc(swaggerconf.swaggerOptions);
 // serve swagger
 app.get('/swagger.json', function(req, res) {
   res.setHeader('Content-Type', 'application/json');
@@ -64,18 +55,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(require('morgan')('short'));
 
 
+
 app.use('/', index);
 
 
- app.use('/books', books);
- app.use('/users', users);
- //app.use('/api', protects);
- app.use('/products', products);
+app.use('/books', books);
+app.use('/users', users);
+app.use('/api', protects);
+app.use('/products', products);
 app.use('/vehicletypes', vehicletypes);
 app.use('/fileuploads', fileuploads);
-
-
+app.use('/items', items);
+app.use('/drivers', drivers);
 app.use('/emails', emails);
+app.use('/resets', resets);
+app.use('/uploads', uploads);
 
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

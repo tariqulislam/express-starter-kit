@@ -1,28 +1,33 @@
 let mongoose = require('mongoose');
 let Product = require('../../models/Product');
 
-module.exports.findProduct = (cb) => {
-  Product.find((err, product) => {
-     if(err) {
-       console.log("service error", err);
-        cb(err);
-     } else {
-       console.log("service success", product)
-        cb(product);
-     }
-  });
-};
-
-module.exports.saveProduct = (vtype,cb) => {
-
-  console.log("this is value type",vtype);
-  Product.create(vtype, (err,product) => {
-    if(err){
-      console.log("Service Error", err);
-      cb(err);
-    } else {
-      console.log("service success", product);
-      cb(product);
-    }
-  });
+let ProductService = {
+  saveProduct: (objProduct,cb) => {
+    return new Promise((resolve, reject) => {
+      Product.create(objProduct)
+      .then(response => {
+          cb(response);
+          resolve(response);
+      })
+      .catch(error => {
+        cb(error);
+        resolve(error);
+      })
+    })
+  },
+  updateProduct: (id, objProduct, cb) => {
+    return new Promise((resolve, reject) => {
+      Product.findByIdAndUpdate(id,objProduct)
+      .then(response => {
+        cb(response);
+        resolve(response)
+      })
+      .catch(error => {
+        cb(error)
+        resolve(error)
+      });
+    });
+  }
 }
+
+module.exports = ProductService;

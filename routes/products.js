@@ -1,8 +1,6 @@
 var express = require('express');
 var router = express.Router();
-//var mongoose = require('mongoose');
-//var Product = require('../models/Product.js');
-let Product = require('../services/product/ProductService');
+let ProductService = require('../services/product/ProductService');
 
 
 router.get('/', function(req,res,next){
@@ -21,19 +19,18 @@ router.get('/:id', function(req,res,next){
   });
 });
 
-
 /**
  * @swagger
  * /products:
  *   post:
  *     tags:
  *       - Products
- *     description: Creates a new Product
+ *     description: Creates a new product
  *     produces:
  *       - application/json
  *     parameters:
  *       - name: product
- *         description: Product object
+ *         description: product object
  *         in: body
  *         required: true
  *         schema:
@@ -42,30 +39,10 @@ router.get('/:id', function(req,res,next){
  *       200:
  *         description: Successfully created
  */
-router.post('/', (req,res,next) =>{
-  Product.saveProduct(req.body, (results) =>{
-    res.json(results);
-  });
-});
-// router.post('/', function(req,res,next){
-//   Product.create(req.body,function(err,post){
-//     if(err) return next(err);
-//     res.json(post);
-//   });
-// });
-
-router.put('/:id', function(req,res,next){
-  Product.findByIdAndUpdate(req.params.id,req.body,function(err,post){
-    if(err) return next(err);
-    res.json(post);
-  });
-});
-
-router.delete('/:id', function(req,res,next){
-  Product.findByIdAndRemove(req.params.id, req.body, function(err,post){
-    if(err) return next(err);
-    res.json(post);
-  });
+router.post('/', function(req,res,next){
+  ProductService.saveProduct(req.body, (result) => {
+    return res.json(result);
+  })
 });
 
 module.exports = router;
