@@ -27,7 +27,7 @@ Installation process is easy, you can only download or clone application from gi
 11. Dotenv
 12. Bcrypt
 13. busboy
-
+14. pm2
 
 ## Usage and instructions
 I have use Dotenv for setup the environment variable for primary configuration of different plugins of the project:
@@ -172,7 +172,43 @@ npm run lint
 
   ```
 
+**PM2 Deployment to server**
 
+Starter kit has configured PM2 integration. Now Developer can easily deploy the application to  your hosting server easily. PM2 is a advance process manager for node js application. 
+
+**For PM2 Installation**
+Starter kit provide you command which will help developer to install the pm2 and deploy the site to hosting server
+
+  For Install the pm2 to hosting server (`yarn` or `npm` command)
+  ```
+     yarn pm2:install
+     npm run pm2:install
+  ```
+  For Production and developer deployment
+  ```
+    yarn pm2:prod
+    yarn pm2:dev
+    
+    npm run pm2:prod
+    npm run pm2:dev
+  ```
+  
+  For monitor the process 
+  ```
+    yarn pm2:monitor
+    npm run pm2:monitor
+  ```
+  
+  For reload and stop and kill the pm2 process
+  ```
+    yarn pm2:reload
+    yarn pm2:stop
+    yarn pm2:kill
+    
+    npm run pm2:reload
+    npm run pm2:stop
+    npm run pm2:kill
+  ```
 
 ## Credits
 
