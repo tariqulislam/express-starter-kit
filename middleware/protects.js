@@ -9,7 +9,10 @@ router.use((req,res,next) => {
    if(token) {
      jwt.verify(token, 'testjwtapplication', (err, decoded) => {
         if(err) {
-          return res.json({success: false, message: 'Failed to authenticate with token....'})
+          return res.json({
+            success: false, 
+            message: 'Failed to authenticate with token....'
+          })
         } else {
           req.decoded = decoded;
           next();
@@ -17,6 +20,7 @@ router.use((req,res,next) => {
      });
    } else {
      return res.status(403).send({
+       code: 401,
        success: false,
        message: 'No token provided.'
      });
