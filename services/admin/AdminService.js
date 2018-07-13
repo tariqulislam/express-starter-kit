@@ -51,7 +51,7 @@ const AdminService = {
                                  message: "Admin Registration is successfull.",
                              });
                  
-                     })
+                     });
                    })
                 } else {
                  cb({

@@ -45,18 +45,16 @@
   </div> <!-- /container -->
   <script type="text/javascript">
    $(document).ready(function () {
-     if(window.location.pathname == '/admin/dashboard') {
+     if(window.location.pathname == '/user/dashboard') {
       var req = $.ajax({
-              url: '/admin/checkauth',
+              url: '/user/checkauth',
               type: "GET",
               headers: {
                 'x-access-token': localStorage.getItem('token')
               },
               contentType: 'application/json; charset=utf-8',
               success: function (result) {
-                
                 console.log(result)
-               
               },
               error: function (xhr, textStatus, errorThrown) {
                 
@@ -68,26 +66,6 @@
               }
             }); //req
 
-            $("#btnGenerateToken").click(function () {
-              $.ajax({
-              url: '/api/invite/code/generate',
-              type: "GET",
-              headers: {
-                'x-access-token': localStorage.getItem('token')
-              },
-              contentType: 'application/json; charset=utf-8',
-              success: function (result) {
-                console.log(result)
-                $("#generateToken").val(result.generateCode);
-              },
-              error: function (xhr, textStatus, errorThrown) {
-                
-                if (console) {
-                  console.log(xhr);
-                }
-              }
-            }); //req
-            });
      }
 
      $("#btnLogout").click(function () {

@@ -9,6 +9,7 @@ var bodyParser = require('body-parser');
 
 var admins = require('./routes/admins');
 var protects = require('./middleware/protects');
+var inviteCodes = require('./routes/invitecodes');
 
 
 
@@ -41,6 +42,8 @@ app.use(require('morgan')('short'));
 
 app.use('/admin', admins);
 app.use('/api', protects);
+app.use('/api/invite', inviteCodes);
+
 
 
 app.use(function(req, res, next) {

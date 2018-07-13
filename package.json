@@ -33,6 +33,7 @@
     "nodemailer": "^4.0.1",
     "nodemailer-express-handlebars": "^2.0.0",
     "random-number": "0.0.9",
+    "randomstring": "^1.1.5",
     "sequelize": "^4.38.0",
     "sequelize-cli": "^4.0.0",
     "serve-favicon": "~2.4.2",

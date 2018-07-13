@@ -1,20 +1,64 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
- 
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="/stylesheets/style.css"/>
- 
-    <script
-    src="https://code.jquery.com/jquery-3.3.1.js"
-    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-    crossorigin="anonymous"></script>
-    
-     <!-- Latest compiled and minified JavaScript -->
-     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-</head>
-<body>
+<% include ./layout/header.ejs %>
+<nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Project name</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="/admin/login">Admin Login Page</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+<div class="container">
+    <form id="reg-form" class="form-signin cg-middle">
+            <div style="display:none;" id="msg-alert-reg" class="alert alert-danger" role="alert">
+                </div>
+        <div class="form-group">
+                <label>Retype Password</label>
+                <input type="text" id="token" class="form-control" />
+        </div> 
+      <button type="button" id="btnUserLogin" class="btn btn-lg btn-primary btn-block">Login</button>
+    </form>
+  </div> <!-- /container -->
+  <script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnRegister").click(function () {
+            var token= $("#token").val();
+        
+            if(token == "") {
+                $("#msg-alert-reg").css('display', 'block').html("password mismatched!");
+                return false;
+            }
 
-</body>
-</html>
+             var req = $.ajax({
+              url: '/admin/register',
+              type: "POST",
+              dataType: "json",
+              data: JSON.stringify({firstName: firstName, lastName: lastName, email: email, password: password}),
+              contentType: 'application/json; charset=utf-8',
+              success: function (result) {
+                console.log(result)
+                $("#msg-alert-reg").css('display', 'block').removeClass('alert-danger')
+                .addClass('alert-success').html(result.message);
+                $("reg-form").reset();
+              },
+              error: function (xhr, textStatus, errorThrown) {
+                if (console) {
+                  console.log(xhr);
+                }
+                $("#msg-alert-reg").css('display', 'block').removeClass('alert-success')
+                .addClass('alert-danger').html(xhr.responseJSON.message);
+              }
+            }); //req
+        });
+    });
+  </script>
+<% include ./layout/footer.ejs %>
