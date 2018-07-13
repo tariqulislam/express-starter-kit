@@ -12,7 +12,7 @@
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-              <li class="active"><a href="/admin/login">Admin Login Page</a></li>
+              <li class="active"><a href="/admin">Admin Login Page</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -22,33 +22,38 @@
             <div style="display:none;" id="msg-alert-reg" class="alert alert-danger" role="alert">
                 </div>
         <div class="form-group">
-                <label>Retype Password</label>
+                <input type="hidden" id="agent" value='<%= agent %>' />
+                <label>Provide Token for Login</label>
                 <input type="text" id="token" class="form-control" />
-        </div> 
-      <button type="button" id="btnUserLogin" class="btn btn-lg btn-primary btn-block">Login</button>
+        </div>
+      <button type="button" id="btnUserLogin" class="btn btn-lg btn-primary btn-block">Click Here to Login</button>
     </form>
   </div> <!-- /container -->
   <script type="text/javascript">
     $(document).ready(function () {
-        $("#btnRegister").click(function () {
+      var count = 0;
+        $("#btnUserLogin").click(function () {
+            debugger
+            count += 1;
             var token= $("#token").val();
-        
+            var agent = $("#agent").val();
+
             if(token == "") {
                 $("#msg-alert-reg").css('display', 'block').html("password mismatched!");
                 return false;
             }
 
              var req = $.ajax({
-              url: '/admin/register',
+              url: '/user/auth',
               type: "POST",
               dataType: "json",
-              data: JSON.stringify({firstName: firstName, lastName: lastName, email: email, password: password}),
+              data: JSON.stringify({ count: count, token: token, agent: agent}),
               contentType: 'application/json; charset=utf-8',
               success: function (result) {
                 console.log(result)
                 $("#msg-alert-reg").css('display', 'block').removeClass('alert-danger')
                 .addClass('alert-success').html(result.message);
-                $("reg-form").reset();
+                location.replace('/user/dashboard');
               },
               error: function (xhr, textStatus, errorThrown) {
                 if (console) {

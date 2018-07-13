@@ -26,18 +26,7 @@
 <div class="cg-middle" class="container">
     <div class="panel panel-default">
         <div class="panel-body">
-            <form class="form-signin">
-               <table>
-                 <tbody>
-                   <td>
-                      <input type="text" id="generateToken" class="form-control" placeholder="Generate token" style="width: 300px"/>
-                   </td>
-                   <td>
-                     &nbsp; <button type="button" id="btnGenerateToken" class="btn btn-lg btn-primary btn-sm">Generate</button>
-                   </td>
-                 </tbody>
-               </table>
-              </form>
+            <h1>Well come to User Dashboard</h1>
         </div>
         <div class="panel-footer">Generate the Invite code for log to Apps</div>
       </div>
@@ -45,28 +34,7 @@
   </div> <!-- /container -->
   <script type="text/javascript">
    $(document).ready(function () {
-     if(window.location.pathname == '/user/dashboard') {
-      var req = $.ajax({
-              url: '/user/checkauth',
-              type: "GET",
-              headers: {
-                'x-access-token': localStorage.getItem('token')
-              },
-              contentType: 'application/json; charset=utf-8',
-              success: function (result) {
-                console.log(result)
-              },
-              error: function (xhr, textStatus, errorThrown) {
-                
-                if (console) {
-                  console.log(xhr);
-                }
-                localStorage.removeItem('token');
-                location.replace('/admin/');
-              }
-            }); //req
-
-     }
+     if(window.location.pathname == '/user/dashboard') { }
 
      $("#btnLogout").click(function () {
       $.ajax({
@@ -80,7 +48,7 @@
                
                 console.log(result)
                 localStorage.removeItem('token');
-                location.replace('/admin/');
+                location.replace('/');
               },
               error: function (xhr, textStatus, errorThrown) {
               

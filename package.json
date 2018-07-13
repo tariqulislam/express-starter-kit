@@ -24,6 +24,7 @@
     "dotenv": "^4.0.0",
     "ejs": "^2.6.1",
     "express": "~4.15.2",
+    "express-session": "^1.15.6",
     "file-type": "^6.2.0",
     "jsonwebtoken": "^7.4.1",
     "moment": "^2.22.2",

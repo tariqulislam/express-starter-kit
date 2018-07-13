@@ -1,6 +1,7 @@
 var Admin = require('../../models').Admin;
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcrypt');
+require('dotenv').config();
 
 const AdminService = {
     register: (admin, cb) => {
