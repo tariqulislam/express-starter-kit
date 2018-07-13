@@ -24,6 +24,29 @@ router.get('/logout', (req, res, next) => {
     });
 });
 
+/**
+ * @swagger
+ * /admin/checkauth:
+ *   get:
+ *     tags:
+ *       - Admins
+ *     description: Check the Authentication of Admin
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: x-access-token
+ *         description: Admin object
+ *         in: header
+ *         required: true
+ *         schema:
+ *           $ref: '#/definitions/Admin'
+ *     responses:
+ *       200:
+ *         description: Successfully created
+ *       403:
+ *         description: Unauthorized access to api
+ */
+
 router.get('/checkauth', (req, res, next) => {
     AdminService.checkAuthenticateAdmin(req, (result) => {
         res.status(result.code).send(result);
@@ -59,14 +82,10 @@ router.post('/register', (req, res, next) => {
 });
 
 
-router.get('/code/generate', (req, res, next) => {
-
-})
-
 /**
  * @swagger
  * /admin/authenticate:
- *   post:
+ *   put:
  *     tags:
  *       - Admins
  *     description: Admin Authenticate or login api end point

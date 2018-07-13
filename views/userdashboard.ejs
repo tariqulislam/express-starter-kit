@@ -11,10 +11,6 @@
       <a class="navbar-brand" href="#">Invitation Apps</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="/admin/dashboard">Home</a></li>
-        <li><a href="/admin/invitation/list">Invitation List</a></li>
-      </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="active"><a id="btnLogout" href="javascript:void(0);">Logout</a></li>
       </ul>
@@ -36,28 +32,7 @@
      if(window.location.pathname == '/user/dashboard') { }
 
      $("#btnLogout").click(function () {
-      $.ajax({
-              url: '/admin/logout',
-              type: "GET",
-              headers: {
-                'x-access-token': localStorage.getItem('token')
-              },
-              contentType: 'application/json; charset=utf-8',
-              success: function (result) {
-               
-                console.log(result)
-                localStorage.removeItem('token');
-                location.replace('/');
-              },
-              error: function (xhr, textStatus, errorThrown) {
-              
-                if (console) {
-                  console.log(xhr);
-                }
-                localStorage.removeItem('token');
-                location.replace('/admin/');
-              }
-            }); //req
+        location.replace('/');
      });
   
    });

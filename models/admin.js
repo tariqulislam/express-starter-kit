@@ -1,9 +1,11 @@
 'use strict';
 /**
 * @swagger
-* definition:
+* definitions:
 *   Admin:
 *     properties:
+*       id:
+*          type: integer
 *       firstName:
 *          type: string
 *       lastName:

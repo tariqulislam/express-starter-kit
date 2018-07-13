@@ -39,7 +39,7 @@ const InviteService = {
         invitetoken.findAll().then(invs => {
                 if(!invs) {
                     cb({
-                        code: 403,
+                        code: 404,
                         message: "Invitation  is empty",
                         invs: null
                     });

@@ -1,4 +1,18 @@
 'use strict';
+/**
+* @swagger
+* definitions:
+*   invitetoken:
+*     properties:
+*       id:
+*          type: integer
+*       token:
+*          type: string
+*       expireDate:
+*          type: object
+*       isActive:
+*          type: boolean
+*/
 module.exports = (sequelize, DataTypes) => {
   var invitetoken = sequelize.define('invitetoken', {
     token: DataTypes.STRING,

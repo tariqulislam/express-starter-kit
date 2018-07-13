@@ -40,7 +40,7 @@ let UserService = {
                   } else {
                      cb({
                          code: 200,
-                         message: "Authenticate"
+                         message: "User Authenticated Successfully"
                      });
                   }
      
