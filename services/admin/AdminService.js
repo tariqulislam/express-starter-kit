@@ -96,13 +96,15 @@ const AdminService = {
                       
                           Admin.update({isLogin:1},
                              {where: {id: newAdmin.id}})
-                          .then(res => console.log('updated', res))
-                          cb({
-                            output: 'success',
-                            code: 200,
-                            message: 'successfully created token',
-                            token: token
+                          .then(res => {
+                            cb({
+                                output: 'success',
+                                code: 200,
+                                message: 'successfully created token',
+                                token: token
+                              })
                           })
+                         
                         } else {
                           cb({ 
                               output: 'error',
@@ -116,6 +118,74 @@ const AdminService = {
           });
         }
      
+    },
+    checkAuthenticateAdmin: (req, cb) => {
+        var token = req.query.token || req.headers['x-access-token']
+    
+        if(token) {
+          jwt.verify(token, 'testjwtapplication', (err, decoded) => {
+             if(err) {
+               cb({
+                 code: 403, 
+                 message: 'Failed to authenticate with token....'
+               });
+             } else {
+               req.decoded = decoded;
+               
+               if(decoded.isLogin == 1) {
+                console.log('this is decoded',decoded);
+                cb({
+                    code: 200, 
+                    message: 'Succesfully Authenticate.'
+                  });
+               } else {
+               cb({
+                    code: 403, 
+                    message: 'Failed to authenticate with token....'
+                  });
+               }
+              
+             }
+          });
+        } else {
+          cb({
+            code: 403,
+            message: 'No token provided.'
+          });
+        }
+    },
+    adminLogout: (cb, req) => {
+
+        var token = req.query.token || req.headers['x-access-token']
+    
+        if(token) {
+          jwt.verify(token, 'testjwtapplication', (err, decoded) => {
+             if(err) {
+               cb({
+                 code: 200
+               });
+             } else {
+               req.decoded = decoded;
+               
+               if(decoded.isLogin == 1) {
+                console.log('this is decoded',decoded);
+                Admin.update({isLogin:0},
+                    {where: {id: decoded.id}})
+                 .then(res => {
+                   cb({
+                       code: 200
+                     });
+                 });
+                
+              }
+            }
+        });
+    } else {
+        cb({
+            code: 200
+        });
+    }
+        
     }
 }
 

@@ -10,28 +10,20 @@ router.get('/dashboard/', (req, res, next) => {
     res.render('generatetoken');
 });
 
+router.get('/registration', (req, res, next) => {
+    res.render('adminreg');
+});
+
+router.get('/logout', (req, res, next) => {
+    AdminService.adminLogout(req, (result) => {
+        res.status(result.code).send(result);
+    });
+});
 
 router.get('/checkauth', (req, res, next) => {
-    var token = req.query.token || req.headers['x-access-token']
-
-    if(token) {
-      jwt.verify(token, 'testjwtapplication', (err, decoded) => {
-         if(err) {
-           return res.status(403).send({
-             code: 403, 
-             message: 'Failed to authenticate with token....'
-           })
-         } else {
-           req.decoded = decoded;
-           console.log('this is decoded',decoded)
-         }
-      });
-    } else {
-      return res.status(403).send({
-        code: 403,
-        message: 'No token provided.'
-      });
-    }
+    AdminService.checkAuthenticateAdmin(req, (result) => {
+        res.status(result.code).send(result);
+    });
 });
 
 /**
@@ -61,6 +53,11 @@ router.post('/register', (req, res, next) => {
         res.status(result.code).send(result);
     });
 });
+
+
+router.get('/code/generate', (req, res, next) => {
+
+})
 
 /**
  * @swagger

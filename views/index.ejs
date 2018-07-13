@@ -1,20 +1,14 @@
 <% include ./layout/header.ejs %>
 <div class="container">
     <form class="form-signin">
-       
-      <h2 class="form-signin-heading">Please sign in</h2>
+      <h2 class="form-signin-heading">Admin Login</h2>
       <div style="display:none;" id="msg-alert" class="alert alert-danger" role="alert">
         </div>
       <label for="inputEmail">Email address</label>
       <input type="email" id="email" class="form-control" placeholder="Email address" required autofocus>
       <label for="inputPassword">Password</label>
       <input type="password" id="password" class="form-control" placeholder="Password" required>
-      <div class="checkbox">
-        <label>
-          <input type="checkbox" value="remember-me"> Remember me
-        </label>
-      </div>
-      <button class="btn btn-lg btn-primary btn-block" id="btnAdminLogin" type="submit">Sign in</button>
+      <button class="btn btn-lg btn-primary btn-block" id="btnAdminLogin" type="button">Sign in</button>
     </form>
   </div> <!-- /container -->
   <script type="text/javascript">

@@ -1,27 +1,84 @@
 <% include ./layout/header.ejs %>
+<nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Project name</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="/admin/login">Login Page</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
 <div class="container">
-    <form class="form-signin">
+    <form id="reg-form" class="form-signin cg-middle">
+            <div style="display:none;" id="msg-alert-reg" class="alert alert-danger" role="alert">
+                </div>
       <div class="form-group">
           <label>First Name</label>
-          <input type="text" class="form-control" />
+          <input type="text" id="firstName" class="form-control" />
       </div>
       <div class="form-group">
             <label>Last Name</label>
-            <input type="text" class="form-control" />
+            <input type="text" id="lastName" class="form-control" />
         </div>
         <div class="form-group">
                 <label>Email</label>
-                <input type="email" class="form-control" />
+                <input type="email" id="email" class="form-control" />
         </div> 
         <div class="form-group">
                 <label>Password</label>
-                <input type="password" class="form-control" />
+                <input type="password" id="password" class="form-control" />
         </div> 
         <div class="form-group">
                 <label>Retype Password</label>
-                <input type="password" class="form-control" />
+                <input type="password" id="retypePassword" class="form-control" />
         </div> 
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+      <button type="button" id="btnRegister" class="btn btn-lg btn-primary btn-block">Register</button>
     </form>
   </div> <!-- /container -->
+  <script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnRegister").click(function () {
+            var firstName= $("#firstName").val();
+            var lastName= $("#lastName").val();
+            var email = $("#email").val();
+            var password = $("#password").val();
+            var retypePassword = $("#retypePassword").val();
+
+            if(password != retypePassword) {
+                $("#msg-alert-reg").css('display', 'block').html("password mismatched!");
+                return false;
+            }
+
+             var req = $.ajax({
+              url: '/admin/register',
+              type: "POST",
+              dataType: "json",
+              data: JSON.stringify({firstName: firstName, lastName: lastName, email: email, password: password}),
+              contentType: 'application/json; charset=utf-8',
+              success: function (result) {
+                console.log(result)
+                $("#msg-alert-reg").css('display', 'block').removeClass('alert-danger')
+                .addClass('alert-success').html(result.message);
+                $("reg-form").reset();
+              },
+              error: function (xhr, textStatus, errorThrown) {
+                if (console) {
+                  console.log(xhr);
+                }
+                $("#msg-alert-reg").css('display', 'block').removeClass('alert-success')
+                .addClass('alert-danger').html(xhr.responseJSON.message);
+              }
+            }); //req
+        });
+    });
+  </script>
 <% include ./layout/footer.ejs %>
