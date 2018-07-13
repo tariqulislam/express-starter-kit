@@ -1,6 +1,7 @@
 var moment = require('moment');
 var randomString = require('randomstring');
 var invitetoken = require('../../models').invitetoken;
+require('dotenv').config();
 
 const InviteService = {
     generate: (cb) => {

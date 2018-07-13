@@ -1,13 +1,13 @@
 var express = require('express');
 var router = express.Router();
 var jwt = require('jsonwebtoken');
-
+require('dotenv').config();
 
 router.use((req,res,next) => {
    var token = req.body.token || req.query.token || req.headers['x-access-token']
 
    if(token) {
-     jwt.verify(token, 'testjwtapplication', (err, decoded) => {
+     jwt.verify(token, process.env.JWT_APP_SECRETE, (err, decoded) => {
         if(err) {
           return res.json({
             success: false, 

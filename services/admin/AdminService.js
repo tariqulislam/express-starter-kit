@@ -77,7 +77,9 @@ const AdminService = {
                 message: "Admin password is Empty",
             })
         } else {
+            console.log('this is admin', admin)
             Admin.findOne({where:{email: admin.email}}). then((result) => {
+                
                 if(result == null) {
                    cb({ 
                     output: 'error',
@@ -90,7 +92,7 @@ const AdminService = {
         
                     bcrypt.compare(admin.password, result.get('password'), (err, hasData) => {
                         if (hasData) {
-                          var token = jwt.sign(newAdmin, 'testjwtapplication', {
+                          var token = jwt.sign(newAdmin, process.env.JWT_APP_SECRETE, {
                             expiresIn: "12h"
                           });
                       
@@ -123,7 +125,7 @@ const AdminService = {
         var token = req.query.token || req.headers['x-access-token']
     
         if(token) {
-          jwt.verify(token, 'testjwtapplication', (err, decoded) => {
+          jwt.verify(token, process.env.JWT_APP_SECRETE, (err, decoded) => {
              if(err) {
                cb({
                  code: 403, 
@@ -159,7 +161,7 @@ const AdminService = {
         var token = req.query.token || req.headers['x-access-token']
     
         if(token) {
-          jwt.verify(token, 'testjwtapplication', (err, decoded) => {
+          jwt.verify(token, process.env.JWT_APP_SECRETE, (err, decoded) => {
              if(err) {
                cb({
                  code: 200
