@@ -9,4 +9,24 @@ router.get('/code/generate',(req, res, next) => {
     });
 });
 
+router.get('/list', (req, res, next ) => {
+  InviteService.getAllInvitation(result => {
+      res.status(result.code).send(result);
+  });
+});
+
+router.post('/activate', (req, res, next) => {
+  
+   InviteService.activeInvitation(req.body,result => {
+       res.status(result.code).send(result);
+   })
+});
+
+router.put('/deactivate', (req, res, next) => {
+  
+    InviteService.inactiveInvitation(req.body,result => {
+        res.status(result.code).send(result);
+    })
+})
+
 module.exports = router;

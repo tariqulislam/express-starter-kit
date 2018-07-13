@@ -1,0 +1,225 @@
+<% include ./layout/header.ejs %>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Project name</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="/admin/dashboard">Home</a></li>
+          <li><a href="/admin/invitation/list">Invitation List</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="active"><a id="btnLogout" href="javascript:void(0);">Logout</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </nav>
+
+<div class="cg-middle" class="container">
+    <div class="panel panel-default">
+        <div class="panel-body">
+           
+                <div style="display:none;" id="msg-alert" class="alert alert-danger" role="alert">
+                    </div>
+               <table class="table table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <th>Token</th>
+                        <th>Expire Date</th>
+                        <th>Created Date</th>
+                        <th>Is Active</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="inv-list">
+
+                </tbody>
+               </table>
+          
+        </div>
+        <div class="panel-footer">Generate the Invite code for log to Apps</div>
+      </div>
+   
+  </div> <!-- /container -->
+  <script type="text/javascript">
+   $(document).ready(function () {
+    window.InvitationList = {
+           active: function (id)  {
+            $.ajax({
+              url: '/api/invite/activate',
+              type: "POST",
+              headers: {
+                'x-access-token': localStorage.getItem('token')
+              },
+              data: JSON.stringify({
+                  id: id
+              }),
+              contentType: 'application/json; charset=utf-8',
+              success: function (result) {
+                  
+                  if(result.code == 200) {
+                    $("#msg-alert").css('display', 'block').removeClass('alert-danger')
+                .addClass('alert-success').html(result.message);
+                    window.InvitationList.load();
+                  }
+        
+              },
+              error: function (xhr, textStatus, errorThrown) {
+                
+                if (console) {
+                  console.log(xhr);
+                }
+                $("#msg-alert").css('display', 'block').removeClass('alert-success')
+                .addClass('alert-danger').html(xhr.responseJSON.message);
+                window.InvitationList.load();
+              }
+             }); //req
+           },
+           deactive: function (id) {
+            $.ajax({
+              url: '/api/invite/deactivate',
+              type: "PUT",
+              headers: {
+                'x-access-token': localStorage.getItem('token')
+              },
+              data: JSON.stringify({
+                  id: id
+              }),
+              contentType: 'application/json; charset=utf-8',
+              success: function (result) {
+                  
+                  if(result.code == 200) {
+                    $("#msg-alert").css('display', 'block').removeClass('alert-danger')
+                .addClass('alert-success').html(result.message);
+                    window.InvitationList.load();
+                  }
+        
+              },
+              error: function (xhr, textStatus, errorThrown) {
+                
+                if (console) {
+                  console.log(xhr);
+                }
+                $("#msg-alert").css('display', 'block').removeClass('alert-success')
+                .addClass('alert-danger').html(xhr.responseJSON.message);
+                window.InvitationList.load();
+              }
+             }); //req
+           },
+           load: function () {
+            $.ajax({
+              url: '/api/invite/list',
+              type: "GET",
+              headers: {
+                'x-access-token': localStorage.getItem('token')
+              },
+              contentType: 'application/json; charset=utf-8',
+              success: function (result) {
+                  
+                console.log(result)
+                if(result.code == 200) {
+                    if(result.invs.length >= 0) {
+                        var html = '';
+                        $(result.invs).each(function (idx, elem) {
+                            html += '<tr>';
+                            html += "<td>"+ elem.token + "</td>";
+                            html += "<td>"+ elem.expireDate + "</td>";
+                            html += '<td>'+ elem.createdAt + '</td>';
+                           
+                            html += "<td>";
+                            if(elem.isActive) {    
+                            html += "Active";
+                            } else {
+                             html += "Inactive";
+                            }
+                            html +=  "</td>";
+                            html += '<td>';
+                            if(elem.isActive) {
+                                html +=    '<button type="button" class="btn btn-danger btn-xs" onclick="window.InvitationList.deactive('+elem.id+')">Dactivate</button>';
+                            } else {
+                                html +=    '<button type="button" class="btn btn-success btn-xs" onclick="window.InvitationList.active('+elem.id+')">Activate</button>';
+                            }
+                            html += '</td>';
+                            html += '</tr>';
+                          
+                        });
+
+                        $("#inv-list").html(html);
+                    }
+                }
+              },
+              error: function (xhr, textStatus, errorThrown) {
+                
+                if (console) {
+                  console.log(xhr);
+                }
+                $("#inv-list").html('');
+              }
+             }); //req
+           }
+       }
+  
+     if(window.location.pathname == '/admin/invitation/list') {
+         console.log("working");
+      var req = $.ajax({
+              url: '/admin/checkauth',
+              type: "GET",
+              headers: {
+                'x-access-token': localStorage.getItem('token')
+              },
+              contentType: 'application/json; charset=utf-8',
+              success: function (result) {
+                console.log(result)
+              },
+              error: function (xhr, textStatus, errorThrown) {
+                
+                if (console) {
+                  console.log(xhr);
+                }
+                localStorage.removeItem('token');
+                location.replace('/admin/');
+              }
+            }); //req
+
+          
+            window.InvitationList.load();
+           
+     }
+
+      
+
+     $("#btnLogout").click(function () {
+      $.ajax({
+              url: '/admin/logout',
+              type: "GET",
+              headers: {
+                'x-access-token': localStorage.getItem('token')
+              },
+              contentType: 'application/json; charset=utf-8',
+              success: function (result) {
+               
+                console.log(result)
+                localStorage.removeItem('token');
+                location.replace('/admin/');
+              },
+              error: function (xhr, textStatus, errorThrown) {
+              
+                if (console) {
+                  console.log(xhr);
+                }
+                localStorage.removeItem('token');
+                location.replace('/admin/');
+              }
+            }); //req
+     });
+  
+   });
+  </script>
+<% include ./layout/footer.ejs %>

@@ -42,7 +42,6 @@ app.use(require('morgan')('short'));
 app.use('/admin', admins);
 app.use('/api', protects);
 app.use('/api/invite', inviteCodes);
-
 app.use('/', users);
 
 

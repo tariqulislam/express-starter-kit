@@ -1,11 +1,9 @@
 var express = require('express');
-
-var express = require('express');
 var router = express.Router();
 var randomString = require('randomstring');
 var user = require('../models').User;
-var invitetoken = require('../models').invitetoken;
-var moment = require('moment');
+var randomString = require('randomstring');
+var UserService = require('../services/user/UserService');
 
 router.get('/',(req, res, next) => {
     var userTime = new Date().getTime() / 1000;
@@ -23,48 +21,9 @@ router.get('/user/dashboard', (req, res, next) => {
 });
 
 router.post('/user/auth', (req, res, next) => {
-   var reqUser = req.body;
-   invitetoken.findOne({where: {token: reqUser.token, isActive: 1}}).then((result) => {
-       if(result == null) {
-           user.update({loginAttempt: reqUser.count},{where:{agentName: reqUser.agent}}).then((result) => console.log('updated'));
-           user.findOne({where:{agentName: reqUser.agent}}).then((result) => {
-            if(result != null) {
-                let user = result.get({plain: true});
-                let mycount = user.loginAttempt
-                console.log('find one', mycount)
-                if(mycount >= 10) {
-                    res.status(401).send({
-                        code: 401,
-                        message: "To many Client Request"
-                    });
-                } else {
-                    res.status(401).send({
-                        code: 401,
-                        message: "unauthenticated user"
-                    });
-                }             
-            }
-          });
-       } else {
-             let token = result.get({plain: true});
-             let nowDate = moment().format("YYYY-MM-DD HH:mm:ss");
-             let tokenExpireDate = moment(token.expireDate).format("YYYY-MM-DD HH:mm:ss");
-
-             if(nowDate > tokenExpireDate) {
-                user.update({loginAttempt: reqUser.count},{where:{agentName: reqUser.agent}}).then((result) => console.log('updated'));
-                res.status(401).send({
-                    code: 401,
-                    message: "Token Already Expired"
-                });
-             } else {
-                res.status(200).send({
-                    code: 200,
-                    message: "Authenticate"
-                });
-             }
-
-       }
-   });
+    UserService.userLogin(req, (result) => {
+        res.status(result.code).send(result);
+    });
 });
 
 module.exports = router;

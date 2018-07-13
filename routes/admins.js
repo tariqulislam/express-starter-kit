@@ -14,6 +14,10 @@ router.get('/registration', (req, res, next) => {
     res.render('adminreg');
 });
 
+router.get('/invitation/list', (req, res, next) => {
+    res.render('invitationlist');
+})
+
 router.get('/logout', (req, res, next) => {
     AdminService.adminLogout(req, (result) => {
         res.status(result.code).send(result);
